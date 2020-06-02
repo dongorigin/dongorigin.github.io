@@ -160,7 +160,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-03 02:12:45" itemprop="dateModified" datetime="2020-06-03T02:12:45+08:00">2020-06-03</time>
+                <time title="Modified: 2020-06-03 02:23:58" itemprop="dateModified" datetime="2020-06-03T02:23:58+08:00">2020-06-03</time>
               </span>
 
           
@@ -234,7 +234,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-03 02:12:45" itemprop="dateModified" datetime="2020-06-03T02:12:45+08:00">2020-06-03</time>
+                <time title="Modified: 2020-06-03 02:23:58" itemprop="dateModified" datetime="2020-06-03T02:23:58+08:00">2020-06-03</time>
               </span>
 
           
@@ -293,7 +293,12 @@
 <li>启动本地服务 <code>hexo server</code></li>
 <li>浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> (默认端口号4000)</li>
 </ul>
-<p>经过</p>
+<p>主题</p>
+<p>预览后是不是感觉挺丑的？没有关系，Hexo 支持丰富的主题 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">theme</a> 供我们选择<br>1.将主题文件放到文件夹 <code>themes/</code> 下，建议用 git submodule 的方式引用主题的源码，这样方便更新，也方便 CI 依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>2.配置主题</p>
+<p>再次预览看看，是不是感觉好多了🙂</p>
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>安装 git 部署插件 <code>npm install hexo-deployer-git --save</code></p>
 <p>配置 hexo 部署</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span> <span class="comment"># 类型填git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">&lt;repository</span> <span class="string">url&gt;</span> <span class="comment"># Git 仓库地址</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span> <span class="comment"># 分支。默认是 master</span></span><br></pre></td></tr></table></figure>
