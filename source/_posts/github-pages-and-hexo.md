@@ -78,7 +78,20 @@ git push origin source
 
 
 
-经过
+主题
+
+预览后是不是感觉挺丑的？没有关系，Hexo 支持丰富的主题 [theme](https://hexo.io/themes/) 供我们选择
+1.将主题文件放到文件夹 `themes/` 下，建议用 git submodule 的方式引用主题的源码，这样方便更新，也方便 CI 依赖
+
+``` bash
+git submodule add https://github.com/next-theme/hexo-theme-next themes/next
+```
+
+2.配置主题
+
+再次预览看看，是不是感觉好多了🙂
+
+
 
 ### 部署
 
