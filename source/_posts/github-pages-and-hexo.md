@@ -51,6 +51,23 @@ $ cd <floder>
 $ npm install
 ```
 
+### 保存源码
+
+GitHub Pages 会托管仓库 master 分支上静态网页
+Hexo 部署，只将生成的静态网站 push 到 github 了，源码并没有 push，这样不好维护，比如换台电脑没有源码就无法编辑文章了
+如何解决？利用 git 分支，新建 source 分支用于保存源码
+
+``` bash
+git checkout -b source
+git push origin source
+```
+
+
+
+- source 分支：项目源码，用于编辑维护
+- master 分支：源码生成的静态网页（即源码 `public` 文件夹下的内容）
+
+
 
 ### 编写
 
@@ -59,10 +76,9 @@ $ npm install
 - 启动本地服务 `hexo server`
 - 浏览器访问 http://localhost:4000 (默认端口号4000)
 
-### 保存源码
 
-我们需要保存源码，但是需要部署到 GitHub Pages 的是渲染后的，如何解决？利用 git 分支
-新建 source 分支保存源码，静态页面部署到 master 分支
+
+经过
 
 ### 部署
 
@@ -83,7 +99,6 @@ deploy:
 
 
 
-### todo
+### 持续集成自动部署
 
-持续集成自动部署
-
+TODO
