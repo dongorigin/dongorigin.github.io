@@ -31,5 +31,4 @@ ARTS 是左耳朵耗子发起的学习活动，以下是他的初衷（[原文](
 
 # 我的 ARTS
 
-- {% post_link ARTS-week1 %
-
+- {% post_link ARTS-week1 %}
