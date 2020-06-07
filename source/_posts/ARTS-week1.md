@@ -57,7 +57,7 @@ class Solution {
 ``` Java
 Iterator<Callback> iterator = callbackList.iterator();
 while (iterator.hasNext()) {
-	final Callback callback = iterator.next();
+  final Callback callback = iterator.next();
   if (callback.isDestroy()) {
     iterator.remove();
   } else {
@@ -77,8 +77,8 @@ while (iterator.hasNext()) {
 没办法，在列表的所有修改位置打断点增加日志打印线程名，确认确实都在主线程。
 再次看迭代部分，还是百思不得其解，怎么看都没问题。难道我对 ConcurrentModificationException 异常的理解有误？于是又搜索+看源码，重新理解了一遍，确认自己理解是正确的。
 那到底哪里出了问题呢？聪明的读者估计一早就发现疑点，急不可耐的想指给我了，然而当时的我脑子全是浆糊，感觉代码怎么都没有问题。
-最后想不到更好的办法，在 remove、notifyCallback 以及其他修改等位置逐渐增加日志信息，线程名，没问题，调用顺序，没问题。
-直到日志打印了 callbackList.size() ，不对有大问题，notifyCallback 之后列表变少了。追踪代码，发现 notifyCallback 之后隔了很长很长的调用链，最终修改了 callbackList，导致了迭代中修改列表。
+最后想不到更好的办法，在 remove、notifyCallback 以及其他修改等位置逐渐增加日志信息，线程名，没问题，调用顺序，没问题。直到日志打印了 callbackList.size() ，不对有大问题，notifyCallback 之后列表变少了。追踪代码，发现 notifyCallback 之后隔了很长很长的调用链，最终修改了 callbackList，导致了迭代中修改列表。
+写了这么多流水账，主要是想把自己糟糕的排查思路记录下来，引以为戒。
 最后反思，其实如最初预计的，在清楚这个异常的原因时，这个问题是非常显然的，我在排除多线程问题后，只需要紧盯着迭代中修改，就可以立即发现问题。但是我当时怀疑自己对这个异常的理解不对，排查方向就乱了。
 
 # Review
