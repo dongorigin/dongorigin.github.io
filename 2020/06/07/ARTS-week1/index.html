@@ -20,30 +20,32 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="自律给我自由">
-<meta property="og:type" content="website">
-<meta property="og:title" content="dongorigin">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Algorithm33.Search in Rotated Sorted Array  12Input: nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0Output: 4  有序数组查找，方向是二分查找。但数组又比较特殊不是完全有序的。二分查找本质是每次缩小一半的范围，那是否能判断出在哪个范围内呢？发现数组有一半是有序的，另一半则是无序的，无序那边只能放弃">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARTS-Week1">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/ARTS-week1/index.html">
 <meta property="og:site_name" content="dongorigin">
-<meta property="og:description" content="自律给我自由">
+<meta property="og:description" content="Algorithm33.Search in Rotated Sorted Array  12Input: nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0Output: 4  有序数组查找，方向是二分查找。但数组又比较特殊不是完全有序的。二分查找本质是每次缩小一半的范围，那是否能判断出在哪个范围内呢？发现数组有一半是有序的，另一半则是无序的，无序那边只能放弃">
+<meta property="article:published_time" content="2020-06-07T08:29:45.000Z">
+<meta property="article:modified_time" content="2020-06-07T16:57:23.635Z">
 <meta property="article:author" content="dongorigin">
-<meta property="article:tag" content="Android Kotlin">
+<meta property="article:tag" content="arts">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/06/07/ARTS-week1/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'default'
   };
 </script>
 
-  <title>dongorigin</title>
+  <title>ARTS-Week1 | dongorigin</title>
   
 
 
@@ -123,9 +125,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
@@ -141,10 +144,9 @@
       <meta itemprop="name" content="dongorigin">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/07/ARTS-week1/" class="post-title-link" itemprop="url">ARTS-Week1</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          ARTS-Week1
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -174,7 +176,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">33.Search in Rotated Sorted Array</a> </p>
+        <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">33.Search in Rotated Sorted Array</a> </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
 
 <p>有序数组查找，方向是二分查找。但数组又比较特殊不是完全有序的。<br>二分查找本质是每次缩小一半的范围，那是否能判断出在哪个范围内呢？发现数组有一半是有序的，另一半则是无序的，无序那边只能放弃，有序的那边可以判断。发现这个规律还是花了些时间。</p>
@@ -198,220 +200,33 @@
 <li><strong>可度量的，每个阶段都要有成果。</strong>架构演进不能一味“憋大招”，最好能分阶段实施，并且每个阶段都要有成果。这样可以让团队成员更快地感受到优化成果，也可以激励更多的人参与到重构的事业中。</li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/arts/" rel="tag"># arts</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/ARTS/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="dongorigin">
-      <meta itemprop="description" content="自律给我自由">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="dongorigin">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/01/ARTS/" class="post-title-link" itemprop="url">ARTS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-01 00:37:57" itemprop="dateCreated datePublished" datetime="2020-06-01T00:37:57+08:00">2020-06-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-08 00:57:23" itemprop="dateModified" datetime="2020-06-08T00:57:23+08:00">2020-06-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ARTS-是什么？"><a href="#ARTS-是什么？" class="headerlink" title="ARTS 是什么？"></a>ARTS 是什么？</h1><p>ARTS 是左耳朵耗子发起的学习活动，以下是他的初衷（<a href="(https://www.zhihu.com/question/301150832/answer/529809529">原文</a>）</p>
-<p><strong>知道为什么要做这个事，会比直接要做这个事更重要。</strong></p>
-<h2 id="高效学习"><a href="#高效学习" class="headerlink" title="高效学习"></a>高效学习</h2><p><img src="https://pic4.zhimg.com/80/v2-d3d370491be1e1b2a715ac0c19b6325f_720w.jpg" alt="img"><br>我们可以看到，你听别人讲，或是自己看书，或是让别人演示给你，这些都不能让你真正获得学习能力，因为你是在被别人灌输，在听别人说。</p>
-<p>只有你开始自己思考，开始自己总结和归纳，开始找人交流讨论，开始践行，并开始对外输出，你才会掌握到真正的学习能力。<br><strong>学习不是努力读更多的书，盲目追求阅读的速度和数量，这会让人产生低层次的勤奋和成长的感觉，这只是在使蛮力。要思辨，要践行，要总结和归纳，否则，你只是在机械地重复某件事（记忆知识），而不会有质的成长的。</strong></p>
-<h2 id="ARTS-的初衷"><a href="#ARTS-的初衷" class="headerlink" title="ARTS 的初衷"></a>ARTS 的初衷</h2><ul>
-<li><strong>Algorithm。主要是为了编程训练和学习。</strong>每周至少做一个 leetcode 的算法题（先从Easy开始，然后再Medium，最后才Hard）。进行编程训练，如果不训练你看再多的算法书，你依然不会做算法题，看完书后，你需要训练。关于做Leetcode的的优势，你可以看一下我在coolshell上的文章 <a href="https://coolshell.cn/articles/12052.html" target="_blank" rel="noopener">Leetcode 编程训练</a>。</li>
-<li><strong>Review：主要是为了学习英文，如果你的英文不行，你基本上无缘技术高手。</strong>所以，需要你阅读并点评至少一篇英文技术文章，我个人最喜欢去的地方是 <a href="http://Medium.com" target="_blank" rel="noopener">http://Medium.com</a> 以及各个公司的技术blog，如Netflix的。</li>
-<li><strong>Tip：主要是为了总结和归纳你在是常工作中所遇到的知识点。</strong>学习至少一个技术技巧。你在工作中遇到的问题，踩过的坑，学习的点滴知识。</li>
-<li><strong>Share：主要是为了建立你的影响力，能够输出价值观。</strong>分享一篇有观点和思考的技术文章。</li>
-</ul>
-<h2 id="为什么要写下来"><a href="#为什么要写下来" class="headerlink" title="为什么要写下来"></a>为什么要写下来</h2><p>因为写作是一种非常重要的技能，写作不仅仅可以帮你组织你的思路和语言，帮你梳理你的知识，<strong>更重要的是写作其实是一种自己对自己的思考</strong>，同时还可以很容易地扩散并引入其它人的讨论、指正、批评，这对个人来说是非常重要的。</p>
-<h1 id="我的-ARTS"><a href="#我的-ARTS" class="headerlink" title="我的 ARTS"></a>我的 ARTS</h1><ul>
-<li><a href="/2020/06/07/ARTS-week1/" title="%&lt;&#x2F;li&gt; &lt;&#x2F;ul&gt;">%&lt;&#x2F;li&gt; &lt;&#x2F;ul&gt;</a>
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/01/ARTS/" rel="prev" title="ARTS">
+      <i class="fa fa-chevron-left"></i> ARTS
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/github-pages-and-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="dongorigin">
-      <meta itemprop="description" content="自律给我自由">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="dongorigin">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/02/github-pages-and-hexo/" class="post-title-link" itemprop="url">Hello GitHub Pages and Hexo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-12-02 11:30:39" itemprop="dateCreated datePublished" datetime="2018-12-02T11:30:39+08:00">2018-12-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-08 00:57:23" itemprop="dateModified" datetime="2020-06-08T00:57:23+08:00">2020-06-08</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前几天做产品的朋友说他在用 GitHub Pages 来托管 PRD 文档，为了方便文档的共享与更新，遇到一些问题求教如何解决。当真是惊到我了，别人家的产品经理比我们家的程序员还要努力，我要是再不努力就要被产品经理淘汰了。<br>我自己并没有用过，对前端也不熟悉，但这么酷的需求怎么能放过，心中下定决心一定要解决他的需求，于是周末赶紧抄起键盘开始学习，准备先搭建个自己的 blog，这样边用边学效率更高。</p>
-<h2 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h2><p>学习一个东西，我们应该首先先搞清楚是什么，这样才能将这个东西快速归类到自己的知识框架中，以便进一步理解</p>
-<ul>
-<li>GitHub Pages: 静态网站托管服务</li>
-<li>Hexo: 博客框架，支持 <strong>Markdown</strong> 生成博客静态网站，并一键部署到 GitHub Pages</li>
-</ul>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><p>Why GitHub Pages?</p>
-<ul>
-<li>省钱：不用自己租服务器，免费使用</li>
-<li>省心：不用自己维护服务器与网页服务，不用操心服务稳定性</li>
-<li>简单：基于 Git 仓库，push 即可</li>
-</ul>
-<p>Why Hexo?</p>
-<ul>
-<li>命令行操作，简单高效，支持一键部署和持续集成</li>
-<li>支持 Markdown ，文章编辑体验良好</li>
-<li>主题丰富，颜值正义</li>
-</ul>
-<h2 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h2><h3 id="配置-GitHub-Pages"><a href="#配置-GitHub-Pages" class="headerlink" title="配置 GitHub Pages"></a>配置 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></h3><ul>
-<li>创建 git 仓库，以 <code>name.github.io</code> 命名，其中 <code>name</code> 可以自定义</li>
-<li>将静态网页 push 至 git 仓库 <code>https://github.com/username/name.github.io</code></li>
-<li>浏览器访问 <code>https://name.github.io</code> 就能看到网页了！</li>
-</ul>
-<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></h3><p>安装 Node.js</p>
-<p><code>brew install node</code></p>
-<p>安装 Hexo</p>
-<p> <code>npm install hexo-cli -g</code></p>
-<p>初始化 Hexo </p>
-<p>到目标文件夹 <code>&lt;floder&gt;</code>（一个文件夹对应一个站点）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;floder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;floder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-
-<h3 id="保存源码"><a href="#保存源码" class="headerlink" title="保存源码"></a>保存源码</h3><p>GitHub Pages 会托管仓库 master 分支上静态网页<br>Hexo 部署，只将生成的静态网站 push 到 github 了，源码并没有 push，这样不好维护，比如换台电脑没有源码就无法编辑文章了<br>如何解决？利用 git 分支，新建 source 分支用于保存源码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b <span class="built_in">source</span></span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>source 分支：项目源码，用于编辑维护</li>
-<li>master 分支：源码生成的静态网页（即源码 <code>public</code> 文件夹下的内容）</li>
-</ul>
-<h3 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h3><p>本地预览</p>
-<ul>
-<li>启动本地服务 <code>hexo server</code></li>
-<li>浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> (默认端口号4000)</li>
-</ul>
-<p>主题</p>
-<p>预览后是不是感觉挺丑的？没有关系，Hexo 支持丰富的主题 <a href="https://hexo.io/themes/" target="_blank" rel="noopener">theme</a> 供我们选择<br>1.将主题文件放到文件夹 <code>themes/</code> 下，建议用 git submodule 的方式引用主题的源码，这样方便更新，也方便 CI 依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule add https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-
-<p>2.配置主题</p>
-<p>再次预览看看，是不是感觉好多了🙂</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>安装 git 部署插件 <code>npm install hexo-deployer-git --save</code></p>
-<p>配置 hexo 部署</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span> <span class="comment"># 类型填git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">&lt;repository</span> <span class="string">url&gt;</span> <span class="comment"># Git 仓库地址</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span> <span class="comment"># 分支。默认是 master</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>hexo clean &amp;&amp; hexo g -d &amp;&amp; hexo s</code></p>
-<h3 id="持续集成自动部署"><a href="#持续集成自动部署" class="headerlink" title="持续集成自动部署"></a>持续集成自动部署</h3><p>TODO</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -464,6 +279,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tip"><span class="nav-number">2.</span> <span class="nav-text">Tip</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Review"><span class="nav-number">3.</span> <span class="nav-text">Review</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Share"><span class="nav-number">4.</span> <span class="nav-text">Share</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#笔记整理：关于监控和架构"><span class="nav-number">4.1.</span> <span class="nav-text">笔记整理：关于监控和架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监控"><span class="nav-number">4.1.1.</span> <span class="nav-text">监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构"><span class="nav-number">4.1.2.</span> <span class="nav-text">架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#架构选型"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">架构选型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#架构演进"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">架构演进</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
