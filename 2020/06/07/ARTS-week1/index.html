@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="dongorigin">
 <meta property="og:description" content="Algorithm33.Search in Rotated Sorted Array  12Input: nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0Output: 4  有序数组查找，方向是二分查找。但数组又比较特殊不是完全有序的。二分查找本质是每次缩小一半的范围，那是否能判断出在哪个范围内呢？发现数组有一半是有序的，另一半则是无序的，无序那边只能放弃">
 <meta property="article:published_time" content="2020-06-07T08:29:45.000Z">
-<meta property="article:modified_time" content="2020-06-07T17:44:52.862Z">
+<meta property="article:modified_time" content="2020-06-07T17:53:37.266Z">
 <meta property="article:author" content="dongorigin">
 <meta property="article:tag" content="arts">
 <meta name="twitter:card" content="summary">
@@ -162,7 +162,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-08 01:44:52" itemprop="dateModified" datetime="2020-06-08T01:44:52+08:00">2020-06-08</time>
+                <time title="Modified: 2020-06-08 01:53:37" itemprop="dateModified" datetime="2020-06-08T01:53:37+08:00">2020-06-08</time>
               </span>
 
           
@@ -185,14 +185,14 @@
 
 
 <h1 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h1><p>项目中遇到了 ArrayList 的 ConcurrentModificationException 异常。伪代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Callback&gt; iterator = callbackList.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">	<span class="keyword">final</span> Callback callback = iterator.next();</span><br><span class="line">  <span class="keyword">if</span> (callback.isDestroy()) &#123;</span><br><span class="line">    iterator.remove();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    notifyCallback(callback);</span><br><span class="line">  &#125;         </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Callback&gt; iterator = callbackList.iterator();</span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">  <span class="keyword">final</span> Callback callback = iterator.next();</span><br><span class="line">  <span class="keyword">if</span> (callback.isDestroy()) &#123;</span><br><span class="line">    iterator.remove();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    notifyCallback(callback);</span><br><span class="line">  &#125;         </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>我知道这个异常只有两种原因</p>
 <ol>
 <li>多线程并发修改 List，如其名</li>
 <li>List 迭代中增加或删除了元素</li>
 </ol>
-<p>我自认为对这个异常是很清楚的，但是排查问题依然花了很久很久，查明后问题又是如此的显然，所以记录一下避免自己再犯类似错误。<br>首先我想先看看是否是多线程问题，直接阅读代码与搜索引用，从我之前对这部分的理解，只有主线程操作。很好，那问题就只剩下迭代中修改了，问题范围就很小了。<br>但是我反复阅读迭代部分之后，虽然有修改列表，是用 <code>iterator.remove()</code> 正确移除的，<code>notifyCallback</code> 方法内也没有移除，看起来没有问题，很是奇怪，难道真有多线程修改？<br>没办法，在列表的所有修改位置打断点增加日志打印线程名，确认确实都在主线程。<br>再次看迭代部分，还是百思不得其解，怎么看都没问题。难道我对 ConcurrentModificationException 异常的理解有误？于是又搜索+看源码，重新理解了一遍，确认自己理解是正确的。<br>那到底哪里出了问题呢？聪明的读者估计一早就发现疑点，急不可耐的想指给我了，然而当时的我脑子全是浆糊，感觉代码怎么都没有问题。<br>最后想不到更好的办法，在 remove、notifyCallback 以及其他修改等位置逐渐增加日志信息，线程名，没问题，调用顺序，没问题。<br>直到日志打印了 callbackList.size() ，不对有大问题，notifyCallback 之后列表变少了。追踪代码，发现 notifyCallback 之后隔了很长很长的调用链，最终修改了 callbackList，导致了迭代中修改列表。<br>最后反思，其实如最初预计的，在清楚这个异常的原因时，这个问题是非常显然的，我在排除多线程问题后，只需要紧盯着迭代中修改，就可以立即发现问题。但是我当时怀疑自己对这个异常的理解不对，排查方向就乱了。</p>
+<p>我自认为对这个异常是很清楚的，但是排查问题依然花了很久很久，查明后问题又是如此的显然，所以记录一下避免自己再犯类似错误。<br>首先我想先看看是否是多线程问题，直接阅读代码与搜索引用，从我之前对这部分的理解，只有主线程操作。很好，那问题就只剩下迭代中修改了，问题范围就很小了。<br>但是我反复阅读迭代部分之后，虽然有修改列表，是用 <code>iterator.remove()</code> 正确移除的，<code>notifyCallback</code> 方法内也没有移除，看起来没有问题，很是奇怪，难道真有多线程修改？<br>没办法，在列表的所有修改位置打断点增加日志打印线程名，确认确实都在主线程。<br>再次看迭代部分，还是百思不得其解，怎么看都没问题。难道我对 ConcurrentModificationException 异常的理解有误？于是又搜索+看源码，重新理解了一遍，确认自己理解是正确的。<br>那到底哪里出了问题呢？聪明的读者估计一早就发现疑点，急不可耐的想指给我了，然而当时的我脑子全是浆糊，感觉代码怎么都没有问题。<br>最后想不到更好的办法，在 remove、notifyCallback 以及其他修改等位置逐渐增加日志信息，线程名，没问题，调用顺序，没问题。直到日志打印了 callbackList.size() ，不对有大问题，notifyCallback 之后列表变少了。追踪代码，发现 notifyCallback 之后隔了很长很长的调用链，最终修改了 callbackList，导致了迭代中修改列表。<br>写了这么多流水账，主要是想把自己糟糕的排查思路记录下来，引以为戒。<br>最后反思，其实如最初预计的，在清楚这个异常的原因时，这个问题是非常显然的，我在排除多线程问题后，只需要紧盯着迭代中修改，就可以立即发现问题。但是我当时怀疑自己对这个异常的理解不对，排查方向就乱了。</p>
 <h1 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h1><p>新牛要讲设计，所以在看设计相关的文章，重温了官方的<a href="https://developer.android.google.cn/jetpack/docs/guide" target="_blank" rel="noopener">应用架构指南</a></p>
 <h1 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h1><p>一年多前买了张绍文的《Android 开发高手课》，粗略看了一些，当时的感想是讲的内容与平时的开发有点远，讲的内容用不上，看起来有点吃力。不只是我，很多读者都有类似反馈。<br>比如内存优化和卡顿优化的章节，不像平时看到的分享（包括官方的 <a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc9CBxr3BVjPTPoDPLdPIFCE" target="_blank" rel="noopener">Android Performance Patterns</a>）主要讲问题发生的原因以及针对每种情况如何处理，课程几乎没有讲如何处理，而是在讲如何监控，如何用各种手段提高监控精度和做到线上监控。<br>当时我是不理解的，只讲监控，却没有讲如何解决。但是现在再看，有了完全不同的感受，发现这些内容正是目前团队遇到的痛点。<br>我之前的团队规模小，大家对项目代码都很熟悉，所以还有可能通过排查代码的方式解决现存问题，通过 review 避免引入新问题。项目功能不少但所用技术并不复杂，只有 Web 和原生，所以定位问题（分锅）也相对简单，也没有遇到那么多 native 异常。<br>但上述人工的方式对于大团队和复杂项目是不现实的。代码量大、使用技术复杂、多团队协作，这让问题的发现和定位都变得困难很多。比如线上发生了 OOM，是 cocos 占内存太多了？还是 Native 有内存泄露？还是 C++ JNI 泄露？还是兼而有之？而且在本地无法复现问题，怎么办？在没有监控和现场记录的情况下，想定位问题如大海捞针。<br>所以发现问题定位问题才是困难的，而定位后解决问题是相对简单的。这就好像程序员平时对 QA 说的，只要能复现问题，就一定能解决。那要如何发现问题呢？监控和现场信息记录。这就是为什么课程都在教如何更好的监控。<br>大厂通常很早就遇到了这个问题并着手解决，监控需求一般也都很通用，所以很多都逐渐做成了基础设施，由专门的人或架构组负责，后来的开发者对这类问题的接触机会也较少了。比如</p>
 <h2 id="笔记整理：关于监控和架构"><a href="#笔记整理：关于监控和架构" class="headerlink" title="笔记整理：关于监控和架构"></a>笔记整理：关于监控和架构</h2><p>监控和架构需要两手抓，一个好的监控可以帮助我们及时发现问题，而一个好的架构可以减少甚至避免我们犯错。</p>
