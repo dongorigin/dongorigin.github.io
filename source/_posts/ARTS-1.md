@@ -1,5 +1,5 @@
 ---
-title: ARTS-Week1
+title: ARTS-1
 date: 2020-06-07 16:29:45
 tags: arts
 ---

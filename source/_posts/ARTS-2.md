@@ -1,7 +1,7 @@
 ---
 title: ARTS-2
 date: 2020-06-21 23:02:22
-tags:
+tags: arts
 ---
 
 # Algorithm
