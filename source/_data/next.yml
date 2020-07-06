@@ -347,7 +347,7 @@ codeblock:
   # Code Highlight theme
   # See: https://github.com/highlightjs/highlight.js/tree/master/src/styles
   theme:
-    light: default
+    light: atom-one-light
     dark: dark
   # Add copy button on codeblock
   copy_button:
