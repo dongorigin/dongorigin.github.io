@@ -14,10 +14,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
 
-<script id="hexo-configurations">
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta property="og:type" content="website">
@@ -31,7 +33,7 @@
 <link rel="canonical" href="http://yoursite.com/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -51,24 +53,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -78,8 +92,9 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
     </div>
@@ -88,9 +103,9 @@
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">dongorigin</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
@@ -107,22 +122,77 @@
 
 
 </div>
-    </header>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">dongorigin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
   <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
 
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
+
       <div class="main-inner">
-        <div class="content-wrap">
-          
+        
 
-          <div class="content index posts-expand">
-            
+        <div class="content index posts-expand">
+          
       
   
   
@@ -158,7 +228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 02:56:43" itemprop="dateModified" datetime="2020-07-06T02:56:43+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
               </span>
 
           
@@ -172,20 +242,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>写在前面</p>
-<p>一个多月前自愿参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。<br>Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Review 每周要有新的总结。Share 如果当周实在没有自己的思考见解，可能会跳过。</p>
+          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>一个多月前参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。<br>Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Review 每周要有新的总结。Share 如果当周实在没有自己的思考见解，可能会跳过。</p>
 <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p>20.Valid Parentheses 验证括号</p>
 <p>验证括号匹配，字符串只包含括号所以难度为 easy，问题聚焦于匹配。<br>匹配问题通常借助栈后进先出的特性处理，遇到 begin 入栈，遇到 end 出栈比较是否匹配。这里左括号入栈，右括号和栈顶的前一个左括号比较。<br>剩下问题是边界，比如一个括号的情况，初次提交时居然没考虑全，心态太松懈了没检查就提交了，下次要注意才行。<br>最终显示占内存比较多，估计是因为我多申请了一个 map 用来存储括号匹配，但我认为这样可读性高了很多，利于逻辑维护，比如增加新的括号种类。</p>
 <p><a href="https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt" target="_blank" rel="noopener">my code</a></p>
 <h1 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h1><p>平时开发调试通常都是连上手机 Android Studio Run 一下就好了，但在一台 OPPO 上居然提示 INSTALL_FAILED_TEST_ONLY 错误，-t 参数明明自动加了为啥没用呢，真让人头大。</p>
-<h4 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h4><p>INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 <code>AndroidManifest.xml</code> 中包含属性 <code>android:testOnly=&quot;true&quot;</code> 的应用。<a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">Manifest 文档</a><br>项目 Manifest 通常不会手动增加此属性，而是 Android Studio Run 会自动添加此属性。<br>可这样 Run 不就无法安装了吗？检查 AS Run 运行的命令 <code>adb shell pm install -t -r xxx.apk</code>，发现参数 -t -r，查看 <a href="https://developer.android.com/studio/command-line/adb.html" target="_blank" rel="noopener">ADB 文档</a> 可知 <code>-t</code> 参数用于安装 test APK：</p>
+<p>问题原因</p>
+<p>INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 <code>AndroidManifest.xml</code> 中包含属性 <code>android:testOnly=&quot;true&quot;</code> 的应用。<a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">Manifest 文档</a><br>项目 Manifest 通常不会手动增加此属性，而是 Android Studio Run 会自动添加此属性。<br>可这样 Run 不就无法安装了吗？检查 AS Run 运行的命令 <code>adb shell pm install -t -r xxx.apk</code>，发现参数 -t -r，查看 <a href="https://developer.android.com/studio/command-line/adb.html" target="_blank" rel="noopener">ADB 文档</a> 可知 <code>-t</code> 参数用于安装 test APK：</p>
 <img src="ARTS-3.assets/image-20200705235116678.png" alt="image-20200705235116678" style="zoom:50%;" />
 
 <p>上面这些我已经知道了，但解决不了 OPPO 的问题，因为 <code>-t</code> 参数已经加了。仔细观察安装过程，发现 OPPO 在安装过程中还有一步扫描病毒，怀疑是中间这步把 <code>-t</code> 参数丢掉了。</p>
 <p>OPPO 安装不了 testOnly 的 APK，那另一个解决方向就是打包非 testOnly 的 APK，不通过 AS Run 打包接口，可运行 gradle 命令 <code>./gradlew intallDebug</code> 或简写 <code>./gradlew iD</code>，包含了 install 命令也非常方便。</p>
-<h4 id="解决方案总结"><a href="#解决方案总结" class="headerlink" title="解决方案总结"></a>解决方案总结</h4><ol>
-<li><code>adb install -t apk</code></li>
-<li><code>./gradlew installDebug</code></li>
+<p>方案总结</p>
+<ol>
+<li>安装 testOnly 的 APK: <code>adb install -t apk</code></li>
+<li>打包非 testOnly 的 APK: <code>./gradlew installDebug</code></li>
 </ol>
 <p>话说回来，官方设计 <code>android:testOnly</code> 这个标签是为了什么呢？结合 Manifest 和 ADB 文档，testOnly 是为了明确标记测试版应用，无法正常安装，也无法上传 Google Play，除了 AS 自动标记外，使用了 preview SDK 也会强制标记，这样可避免测试应用被错误发布。</p>
 <h1 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h1><p>无</p>
@@ -202,7 +273,7 @@
 <li>4.Why：为什么 View 需要提供 <code>post()</code> 和 <code>postDelayed()</code> 这两个方法呢？Handler 不是已经提供好了吗？</li>
 </ul>
 <p>首先我们可以先做一个小实验确认一下问题。用 View.postDelayed 执行一个 toast 显示任务，延时 10 秒，然后关闭 Activity。猜猜看会怎样？10 秒后，toast 显示了！<br>这样我们就先确认了问题 1 内存泄露是存在的，这样看逻辑时也更有针对性一些。带着以上问题，我们来一起看一看关键代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">postDelayed</span><span class="params">(Runnable action, <span class="keyword">long</span> delayMillis)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> attachInfo.mHandler.postDelayed(action, delayMillis);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Postpone the runnable until we know on which thread it needs to run.</span></span><br><span class="line">    <span class="comment">// Assume that the runnable will be successfully placed after attach.</span></span><br><span class="line">    getRunQueue().postDelayed(action, delayMillis);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">postDelayed</span><span class="params">(Runnable action, <span class="keyword">long</span> delayMillis)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">  <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> attachInfo.mHandler.postDelayed(action, delayMillis);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Postpone the runnable until we know on which thread it needs to run.</span></span><br><span class="line">  <span class="comment">// Assume that the runnable will be successfully placed after attach.</span></span><br><span class="line">  getRunQueue().postDelayed(action, delayMillis);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>两种情况</p>
 <ul>
@@ -215,7 +286,7 @@
 <p>继续探究分支 B 情况，<code>getRunQueue</code> 返回的 <code>HandlerActionQueue</code> 类，<code>postDelayed</code> 方法并未执行 runnable，而是用数组暂存了这些 runnable，等到 <code>executeActions(Handler Handler)</code> 再把暂存的 runnable 全部通过 Handler 放入消息队列，同时置空数组。具体可查看类 <code>HandlerActionQueue</code>。</p>
 <p>现在需要知道 <code>executeActions</code> 是被谁调用的，参数 Handler 是哪来的。发现 <code>executeActions</code> 是在 dispatchAttachedToWindow 被调用的，参数 Handler 就是 attachInfo 的 Handler。</p>
 <p>那 dispatchAttachedToWindow 是被谁调用的？attachInfo 从哪来的？这里先按下不表。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">voide <span class="title">dispatchAttachedToWindow</span><span class="params">(AttachInfo info, <span class="keyword">int</span> visibility)</span> </span>&#123;</span><br><span class="line">	mAttachInfo = info;</span><br><span class="line">  ...</span><br><span class="line">	<span class="comment">// Transfer all pending runnables.</span></span><br><span class="line">  <span class="keyword">if</span> (mRunQueue != <span class="keyword">null</span>) &#123;</span><br><span class="line">      mRunQueue.executeActions(info.mHandler);</span><br><span class="line">      mRunQueue = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">voide <span class="title">dispatchAttachedToWindow</span><span class="params">(AttachInfo info, <span class="keyword">int</span> visibility)</span> </span>&#123;</span><br><span class="line">  mAttachInfo = info;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// Transfer all pending runnables.</span></span><br><span class="line">  <span class="keyword">if</span> (mRunQueue != <span class="keyword">null</span>) &#123;</span><br><span class="line">    mRunQueue.executeActions(info.mHandler);</span><br><span class="line">    mRunQueue = <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -225,25 +296,25 @@
 <li>View 在 attach 后销毁，那么 runnable 已经被 attach.Handler 添加到 MessageQueue 了，被 MessageQueue 引用导致无法回收，直到执行完毕或主动移除。就是这里导致了泄露。</li>
 </ol>
 <p>此时我们知道有内存泄露了，接下来是问题 2 如何取消任务避免内存泄露。<br>Handler 可以通过 removeMessages(null, null) 移除此 Handler 所有的消息，具体实现是遍历了消息队列中所有 target 为此 Handler 的消息。<br>View 如何移除 callback？只有一个方法 <code>View.removeCallbacks</code> ，提供 runnable 对象可以移除此对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeCallbacks</span><span class="params">(Runnable action)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (action != <span class="keyword">null</span>) &#123;</span><br><span class="line">  	<span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">  	<span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">      attachInfo.mHandler.removeCallbacks(action);</span><br><span class="line">      attachInfo.mViewRootImpl.mChoreographer.removeCallbacks(</span><br><span class="line">              Choreographer.CALLBACK_ANIMATION, action, <span class="keyword">null</span>);</span><br><span class="line">  	&#125;</span><br><span class="line">  	getRunQueue().removeCallbacks(action);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeCallbacks</span><span class="params">(Runnable action)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (action != <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">      attachInfo.mHandler.removeCallbacks(action);</span><br><span class="line">      attachInfo.mViewRootImpl.mChoreographer.removeCallbacks(Choreographer.CALLBACK_ANIMATION, action, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    getRunQueue().removeCallbacks(action);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>与 Handler 不同的是，传 null 不会移除所有消息。这是为什么呢？我觉得是因为这个 Handler 不是这个 View 专用的，而是多个 View 复用的，所以无法按 Handler 移除所有了。那为什么不能专人专用呢？猜测可能是为了效率，避免产生过多的对象。</p>
-<p>方案 1：保存好 runnable 对象引用，销毁时主动调用 View.removeCallbacks() 来移除消息。</p>
-<p>方案 2：如果希望清除所有 runnable，可以考虑不用 View.postDelayed() 而改用 Handler，通过 Handler.removeCallbacksAndMessages(null) 来清除所有消息避免内存泄露。</p>
+<ul>
+<li>方案 1: 保存好 runnable 对象引用，销毁时主动调用 View.removeCallbacks() 来移除消息。</li>
+<li>方案 2: 如果希望清除所有 runnable，可以考虑不用 View.postDelayed() 而改用 Handler，通过 Handler.removeCallbacksAndMessages(null) 来清除所有消息避免内存泄露。</li>
+</ul>
 <p>可是问题 4 依然没有头绪，为什么 View 需要提供 <code>post()</code> 和 <code>postDelayed()</code> 这两个方法呢？Handler 用起来不是更方便吗？能方便清除所有消息避免泄露。</p>
 <p>我觉得为了搞清楚这个问题，不得不提到 View.post 的一个常见用途：获得 View 的大小。<br>在 Activity.onCreate 时，或者说 View 刚刚创建时，是无法获得 View 的大小的，这很容易理解，因为此时 View 还未进行 measure 和 layout，还不知道自己的大小。但通过 View.post 执行的任务，却可以获取到 View 的大小，这是为什么呢？</p>
 <p>现在我们知道，View.post() 的任务会先暂存到 <code>HandlerActionQueue</code> ，直到 <code>dispatchAttachedToWindow</code> 时才放入消息队列。所以 <code>dispatchAttachedToWindow</code> 的执行时机很关键，其与 measure 和 layout 的执行顺序很重要。但这时搜索引用会发现找不到了，这说明调用点在系统源码中。</p>
 <p>如何检索源码呢？之前用过 GrepCode 和 Android SDK Search 都各自缺陷，好在官方终于在半年前发布了 <a href="https://cs.android.com/" target="_blank" rel="noopener">Android Code Search</a>，体验很好。<br>搜索 <code>dispatchAttachedToWindow</code>，点击方法名就可以看到引用点，看到 ViewRootImpl 的调用点：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performTraversals</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// cache mView since it is used so much below...</span></span><br><span class="line">	<span class="keyword">final</span> View host = mView;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (mFirst) &#123;</span><br><span class="line">     host.dispatchAttachedToWindow(mAttachInfo, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">  mFirst = <span class="keyword">false</span>;</span><br><span class="line">  ...</span><br><span class="line">	<span class="comment">// Ask host how big it wants to be</span></span><br><span class="line">  performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">  ...</span><br><span class="line">  performLayout(lp, mWidth, mHeight);</span><br><span class="line">  ...</span><br><span class="line">	performDraw();</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">performTraversals</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// cache mView since it is used so much below...</span></span><br><span class="line">  <span class="keyword">final</span> View host = mView;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (mFirst) &#123;</span><br><span class="line">    host.dispatchAttachedToWindow(mAttachInfo, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">  mFirst = <span class="keyword">false</span>;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// Ask host how big it wants to be</span></span><br><span class="line">  performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">  ...</span><br><span class="line">  performLayout(lp, mWidth, mHeight);</span><br><span class="line">  ...</span><br><span class="line">  performDraw();</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>performTraversals 方法先调用了 view.dispatchAttachedToWindow，然后调用了 performMeasure 测量、performLayout 布局、performDraw 绘制。<br>这时我们需要理解 Android 的消息驱动机制。TODO<br>所以 dispatchAttachedToWindow 时入队的消息，会在 measure 执行完毕后才执行。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li><p>View.postDelayed 有可能导致内存泄露，使用时一定要注意！</p>
-</li>
-<li><p>View.postDelayed 的任务如何取消？只能通过 runnable 引用来指定取消。removeCallbacks(null) 不会取消任何任务！</p>
-</li>
-<li><p>为什么 View 要提供 post 方法？我认为是为了方便在 View attach 之后执行一些操作，比如获得 View 的大小。（但因为 View 可能多次 measure 和 layout，所以 OnLayoutChangeListener 更靠谱）</p>
-</li>
+<li>View.postDelayed 有可能导致内存泄露，使用时一定要注意！</li>
+<li>View.postDelayed 的任务如何取消？只能通过 runnable 引用来指定取消。removeCallbacks(null) 不会取消任何任务！</li>
+<li>为什么 View 要提供 post 方法？我认为是为了方便在 View attach 之后执行一些操作，比如获得 View 的大小。（但因为 View 可能多次 measure 和 layout，所以 OnLayoutChangeListener 更靠谱）</li>
+<li>查看 Android 源码认准 <a href="https://cs.android.com/" target="_blank" rel="noopener">Android Code Search</a></li>
 </ol>
 
       
@@ -295,7 +366,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 02:56:43" itemprop="dateModified" datetime="2020-07-06T02:56:43+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
               </span>
 
           
@@ -379,7 +450,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 02:56:43" itemprop="dateModified" datetime="2020-07-06T02:56:43+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
               </span>
 
           
@@ -474,7 +545,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 02:56:43" itemprop="dateModified" datetime="2020-07-06T02:56:43+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
               </span>
 
           
@@ -553,7 +624,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 02:56:43" itemprop="dateModified" datetime="2020-07-06T02:56:43+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
               </span>
 
           
@@ -646,8 +717,8 @@
 
 
 
-          </div>
-          
+        </div>
+        
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -670,61 +741,6 @@
     });
   }
 </script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">dongorigin</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
 
       </div>
     </main>
@@ -762,20 +778,13 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
-
-
 <script src="/js/next-boot.js"></script>
-
-
 
 
   
