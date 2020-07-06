@@ -4,9 +4,9 @@ date: 2020-07-05 22:37:44
 tags: arts
 ---
 
-写在前面
+# 写在前面
 
-一个多月前自愿参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。
+一个多月前参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。
 Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Review 每周要有新的总结。Share 如果当周实在没有自己的思考见解，可能会跳过。
 
 # Algorithm
@@ -20,11 +20,13 @@ Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Re
 
 [my code](https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt)
 
+
+
 # Tip
 
 平时开发调试通常都是连上手机 Android Studio Run 一下就好了，但在一台 OPPO 上居然提示 INSTALL_FAILED_TEST_ONLY 错误，-t 参数明明自动加了为啥没用呢，真让人头大。
 
-#### 问题原因
+问题原因
 
 INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 `AndroidManifest.xml` 中包含属性 `android:testOnly="true"` 的应用。[Manifest 文档](https://developer.android.com/guide/topics/manifest/application-element.html)
 项目 Manifest 通常不会手动增加此属性，而是 Android Studio Run 会自动添加此属性。
@@ -36,10 +38,10 @@ INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 
 
 OPPO 安装不了 testOnly 的 APK，那另一个解决方向就是打包非 testOnly 的 APK，不通过 AS Run 打包接口，可运行 gradle 命令 `./gradlew intallDebug` 或简写 `./gradlew iD`，包含了 install 命令也非常方便。
 
-#### 解决方案总结
+方案总结
 
-1. `adb install -t apk`
-2. `./gradlew installDebug`
+1. 安装 testOnly 的 APK: `adb install -t apk`
+2. 打包非 testOnly 的 APK: `./gradlew installDebug`
 
 话说回来，官方设计 `android:testOnly` 这个标签是为了什么呢？结合 Manifest 和 ADB 文档，testOnly 是为了明确标记测试版应用，无法正常安装，也无法上传 Google Play，除了 AS 自动标记外，使用了 preview SDK 也会强制标记，这样可避免测试应用被错误发布。
 
@@ -48,6 +50,8 @@ OPPO 安装不了 testOnly 的 APK，那另一个解决方向就是打包非 tes
 # Review
 
 无
+
+
 
 
 # Share
@@ -73,15 +77,15 @@ OPPO 安装不了 testOnly 的 APK，那另一个解决方向就是打包非 tes
 
 ```java
 public boolean postDelayed(Runnable action, long delayMillis) {
-    final AttachInfo attachInfo = mAttachInfo;
-    if (attachInfo != null) {
-        return attachInfo.mHandler.postDelayed(action, delayMillis);
-    }
+  final AttachInfo attachInfo = mAttachInfo;
+  if (attachInfo != null) {
+    return attachInfo.mHandler.postDelayed(action, delayMillis);
+  }
 
-    // Postpone the runnable until we know on which thread it needs to run.
-    // Assume that the runnable will be successfully placed after attach.
-    getRunQueue().postDelayed(action, delayMillis);
-    return true;
+  // Postpone the runnable until we know on which thread it needs to run.
+  // Assume that the runnable will be successfully placed after attach.
+  getRunQueue().postDelayed(action, delayMillis);
+  return true;
 }
 ```
 
@@ -102,12 +106,12 @@ public boolean postDelayed(Runnable action, long delayMillis) {
 
 ```Java
 voide dispatchAttachedToWindow(AttachInfo info, int visibility) {
-	mAttachInfo = info;
+  mAttachInfo = info;
   ...
-	// Transfer all pending runnables.
+  // Transfer all pending runnables.
   if (mRunQueue != null) {
-      mRunQueue.executeActions(info.mHandler);
-      mRunQueue = null;
+    mRunQueue.executeActions(info.mHandler);
+    mRunQueue = null;
   }
   ...
 }
@@ -128,24 +132,22 @@ View 如何移除 callback？只有一个方法 `View.removeCallbacks` ，提供
 
 ``` Java
 public boolean removeCallbacks(Runnable action) {
-	if (action != null) {
-  	final AttachInfo attachInfo = mAttachInfo;
-  	if (attachInfo != null) {
+  if (action != null) {
+    final AttachInfo attachInfo = mAttachInfo;
+    if (attachInfo != null) {
       attachInfo.mHandler.removeCallbacks(action);
-      attachInfo.mViewRootImpl.mChoreographer.removeCallbacks(
-              Choreographer.CALLBACK_ANIMATION, action, null);
-  	}
-  	getRunQueue().removeCallbacks(action);
-	}
-	return true;
+      attachInfo.mViewRootImpl.mChoreographer.removeCallbacks(Choreographer.CALLBACK_ANIMATION, action, null);
+    }
+    getRunQueue().removeCallbacks(action);
+  }
+  return true;
 }
 ```
 
 与 Handler 不同的是，传 null 不会移除所有消息。这是为什么呢？我觉得是因为这个 Handler 不是这个 View 专用的，而是多个 View 复用的，所以无法按 Handler 移除所有了。那为什么不能专人专用呢？猜测可能是为了效率，避免产生过多的对象。
 
-方案 1：保存好 runnable 对象引用，销毁时主动调用 View.removeCallbacks() 来移除消息。
-
-方案 2：如果希望清除所有 runnable，可以考虑不用 View.postDelayed() 而改用 Handler，通过 Handler.removeCallbacksAndMessages(null) 来清除所有消息避免内存泄露。
+- 方案 1: 保存好 runnable 对象引用，销毁时主动调用 View.removeCallbacks() 来移除消息。
+- 方案 2: 如果希望清除所有 runnable，可以考虑不用 View.postDelayed() 而改用 Handler，通过 Handler.removeCallbacksAndMessages(null) 来清除所有消息避免内存泄露。
 
 
 
@@ -162,20 +164,20 @@ public boolean removeCallbacks(Runnable action) {
 ```Java
 private void performTraversals() {
   // cache mView since it is used so much below...
-	final View host = mView;
+  final View host = mView;
   ...
   if (mFirst) {
-     host.dispatchAttachedToWindow(mAttachInfo, 0);
+    host.dispatchAttachedToWindow(mAttachInfo, 0);
   }
   ...
   mFirst = false;
   ...
-	// Ask host how big it wants to be
+  // Ask host how big it wants to be
   performMeasure(childWidthMeasureSpec, childHeightMeasureSpec);
   ...
   performLayout(lp, mWidth, mHeight);
   ...
-	performDraw();
+  performDraw();
   ...
 }
 ```
@@ -189,15 +191,8 @@ performTraversals 方法先调用了 view.dispatchAttachedToWindow，然后调�
 ## 总结
 
 1. View.postDelayed 有可能导致内存泄露，使用时一定要注意！
-
 2. View.postDelayed 的任务如何取消？只能通过 runnable 引用来指定取消。removeCallbacks(null) 不会取消任何任务！
 3. 为什么 View 要提供 post 方法？我认为是为了方便在 View attach 之后执行一些操作，比如获得 View 的大小。（但因为 View 可能多次 measure 和 layout，所以 OnLayoutChangeListener 更靠谱）
-
-
-
-
-
-
-
+4. 查看 Android 源码认准 [Android Code Search](https://cs.android.com/)
 
 
