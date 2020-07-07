@@ -28,14 +28,14 @@
 <meta property="og:url" content="http://yoursite.com/2020/07/05/ARTS-3/index.html">
 <meta property="og:site_name" content="dongorigin">
 <meta property="og:description" content="写在前面一个多月前参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Review 每周要有新的总结。Share 如果当周实在没有自己的思考见解，可能会跳过。 Algorithm20.Valid Parentheses 验证括号 验证括号匹配，字">
-<meta property="og:image" content="http://yoursite.com/2020/07/05/ARTS-3/ARTS-3.assets/image-20200705235116678.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/05/ARTS-3/ARTS-3.assets/image-20200706002632928.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/ARTS-3/image-20200705235116678.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/05/ARTS-3/image-20200706002632928.png">
 <meta property="article:published_time" content="2020-07-05T14:37:44.000Z">
-<meta property="article:modified_time" content="2020-07-06T15:22:26.892Z">
+<meta property="article:modified_time" content="2020-07-07T05:06:36.795Z">
 <meta property="article:author" content="dongorigin">
 <meta property="article:tag" content="arts">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/05/ARTS-3/ARTS-3.assets/image-20200705235116678.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/05/ARTS-3/image-20200705235116678.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/05/ARTS-3/">
 
@@ -236,7 +236,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-06 23:22:26" itemprop="dateModified" datetime="2020-07-06T23:22:26+08:00">2020-07-06</time>
+                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
               </span>
 
           
@@ -252,12 +252,11 @@
       
         <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>一个多月前参加公司的 ATRS 活动，督促自己学习总结，但坚持不好，借口就不找了，7 月重新出发，我要优先保证每周都有新的总结，再逐渐提高质量。<br>Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Review 每周要有新的总结。Share 如果当周实在没有自己的思考见解，可能会跳过。</p>
 <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p>20.Valid Parentheses 验证括号</p>
-<p>验证括号匹配，字符串只包含括号所以难度为 easy，问题聚焦于匹配。<br>匹配问题通常借助栈后进先出的特性处理，遇到 begin 入栈，遇到 end 出栈比较是否匹配。这里左括号入栈，右括号和栈顶的前一个左括号比较。<br>剩下问题是边界，比如一个括号的情况，初次提交时居然没考虑全，心态太松懈了没检查就提交了，下次要注意才行。<br>最终显示占内存比较多，估计是因为我多申请了一个 map 用来存储括号匹配，但我认为这样可读性高了很多，利于逻辑维护，比如增加新的括号种类。</p>
-<p><a href="https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt" target="_blank" rel="noopener">my code</a></p>
+<p>验证括号匹配，字符串只包含括号所以难度为 easy，问题聚焦于匹配。<br>匹配问题通常借助栈后进先出的特性处理，遇到 begin 入栈，遇到 end 出栈比较是否匹配。这里左括号入栈，右括号和栈顶的前一个左括号比较。<br>剩下问题是边界，比如一个括号的情况，初次提交时居然没考虑全，心态太松懈了没检查就提交了，下次要注意才行。<br>最终显示占内存比较多，估计是因为我多申请了一个 map 用来存储括号匹配，但我认为这样可读性高了很多，利于逻辑维护，比如增加新的括号种类。<br><a href="https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt" target="_blank" rel="noopener">Code</a></p>
 <h1 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h1><p>平时开发调试通常都是连上手机 Android Studio Run 一下就好了，但在一台 OPPO 上居然提示 INSTALL_FAILED_TEST_ONLY 错误，-t 参数明明自动加了为啥没用呢，真让人头大。</p>
 <p>问题原因</p>
 <p>INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 <code>AndroidManifest.xml</code> 中包含属性 <code>android:testOnly=&quot;true&quot;</code> 的应用。<a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank" rel="noopener">Manifest 文档</a><br>项目 Manifest 通常不会手动增加此属性，而是 Android Studio Run 会自动添加此属性。<br>可这样 Run 不就无法安装了吗？检查 AS Run 运行的命令 <code>adb shell pm install -t -r xxx.apk</code>，发现参数 -t -r，查看 <a href="https://developer.android.com/studio/command-line/adb.html" target="_blank" rel="noopener">ADB 文档</a> 可知 <code>-t</code> 参数用于安装 test APK：</p>
-<img src="ARTS-3.assets/image-20200705235116678.png" alt="image-20200705235116678" style="zoom:50%;" />
+<img src="image-20200705235116678.png" alt="image-20200705235116678" style="zoom:50%;" />
 
 <p>上面这些我已经知道了，但解决不了 OPPO 的问题，因为 <code>-t</code> 参数已经加了。仔细观察安装过程，发现 OPPO 在安装过程中还有一步扫描病毒，怀疑是中间这步把 <code>-t</code> 参数丢掉了。</p>
 <p>OPPO 安装不了 testOnly 的 APK，那另一个解决方向就是打包非 testOnly 的 APK，不通过 AS Run 打包接口，可运行 gradle 命令 <code>./gradlew intallDebug</code> 或简写 <code>./gradlew iD</code>，包含了 install 命令也非常方便。</p>
@@ -289,7 +288,7 @@
 <li>B：AttachInfo 不存在，则放入队列。这部分官方特意写了注释，runnable 将推迟执行，假设 attach 之后将执行。</li>
 </ul>
 <p>那么 AttachInfo 是什么？来自哪里？搜索字段引用可知 View.mAttachInfo 在 dispatchAttachedToWindow 时赋值，dispatchDetachedFromWindow 置空，看起来和 View 生命周期有关。</p>
-<img src="ARTS-3.assets/image-20200706002632928.png" alt="image-20200706002632928" style="zoom:50%;" />
+<img src="image-20200706002632928.png" alt="image-20200706002632928" style="zoom:50%;" />
 
 <p>继续探究分支 B 情况，<code>getRunQueue</code> 返回的 <code>HandlerActionQueue</code> 类，<code>postDelayed</code> 方法并未执行 runnable，而是用数组暂存了这些 runnable，等到 <code>executeActions(Handler Handler)</code> 再把暂存的 runnable 全部通过 Handler 放入消息队列，同时置空数组。具体可查看类 <code>HandlerActionQueue</code>。</p>
 <p>现在需要知道 <code>executeActions</code> 是被谁调用的，参数 Handler 是哪来的。发现 <code>executeActions</code> 是在 dispatchAttachedToWindow 被调用的，参数 Handler 就是 attachInfo 的 Handler。</p>
