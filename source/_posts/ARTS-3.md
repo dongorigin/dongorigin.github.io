@@ -17,9 +17,7 @@ Algorithm 暂时不随机，先把常见数据结构相关过一遍。Tip 和 Re
 匹配问题通常借助栈后进先出的特性处理，遇到 begin 入栈，遇到 end 出栈比较是否匹配。这里左括号入栈，右括号和栈顶的前一个左括号比较。
 剩下问题是边界，比如一个括号的情况，初次提交时居然没考虑全，心态太松懈了没检查就提交了，下次要注意才行。
 最终显示占内存比较多，估计是因为我多申请了一个 map 用来存储括号匹配，但我认为这样可读性高了很多，利于逻辑维护，比如增加新的括号种类。
-
-[my code](https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt)
-
+[Code](https://github.com/dongorigin/AlgorithmLearning/blob/master/leetcode/src/main/kotlin/cn/dong/leetcode/20.ValidParentheses.kt)
 
 
 # Tip
@@ -32,7 +30,7 @@ INSTALL_FAILED_TEST_ONLY 错误的直接原因，是系统默认会禁止安装 
 项目 Manifest 通常不会手动增加此属性，而是 Android Studio Run 会自动添加此属性。
 可这样 Run 不就无法安装了吗？检查 AS Run 运行的命令 `adb shell pm install -t -r xxx.apk`，发现参数 -t -r，查看 [ADB 文档](https://developer.android.com/studio/command-line/adb.html) 可知 `-t` 参数用于安装 test APK：
 
-<img src="ARTS-3.assets/image-20200705235116678.png" alt="image-20200705235116678" style="zoom:50%;" />
+<img src="image-20200705235116678.png" alt="image-20200705235116678" style="zoom:50%;" />
 
 上面这些我已经知道了，但解决不了 OPPO 的问题，因为 `-t` 参数已经加了。仔细观察安装过程，发现 OPPO 在安装过程中还有一步扫描病毒，怀疑是中间这步把 `-t` 参数丢掉了。
 
@@ -96,7 +94,7 @@ public boolean postDelayed(Runnable action, long delayMillis) {
 
 那么 AttachInfo 是什么？来自哪里？搜索字段引用可知 View.mAttachInfo 在 dispatchAttachedToWindow 时赋值，dispatchDetachedFromWindow 置空，看起来和 View 生命周期有关。
 
-<img src="ARTS-3.assets/image-20200706002632928.png" alt="image-20200706002632928" style="zoom:50%;" />
+<img src="image-20200706002632928.png" alt="image-20200706002632928" style="zoom:50%;" />
 
 继续探究分支 B 情况，`getRunQueue` 返回的 `HandlerActionQueue` 类，`postDelayed` 方法并未执行 runnable，而是用数组暂存了这些 runnable，等到 `executeActions(Handler Handler)` 再把暂存的 runnable 全部通过 Handler 放入消息队列，同时置空数组。具体可查看类 `HandlerActionQueue`。
 
