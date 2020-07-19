@@ -156,7 +156,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -197,6 +197,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/ARTS-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="dongorigin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dongorigin">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/19/ARTS-4/" class="post-title-link" itemprop="url">ARTS-4</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-19 22:52:39" itemprop="dateCreated datePublished" datetime="2020-07-19T22:52:39+08:00">2020-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h1><p><a href="https://leetcode.com/problems/valid-parenthesis-string/" target="_blank" rel="noopener">678. Valid Parenthesis String</a></p>
+<p>继续括号匹配，相比基础匹配增加了通配符 *，缺什么补什么，可作为左括号或右括号或空。这意味着遍历结束时才能确定 * 代表什么。</p>
+<p>列举几种典型情况找规律</p>
+<ul>
+<li><code>*)</code>：遇到右括号时，可以找 * 匹配。</li>
+<li><code>(*</code> 和 <code>(*)</code>：到结束时才能确定 * 情况，前者作为右括号，后者作为空，后者优先找了左括号匹配。</li>
+<li><code>*(</code>、<code>)*</code>：有顺序要求。</li>
+</ul>
+<p>大概方案</p>
+<ul>
+<li>遍历：遇到右括号优先找左括号匹配，其次找 * 匹配，都找不到则失败。</li>
+<li>遍历结束后：左括号找 * 匹配</li>
+</ul>
+<p>具体方案</p>
+<ul>
+<li>方案 A：为了右括号能先后匹配，左括号与<code>*</code>分别放入两个栈。遍历结束后则两个栈出栈匹配。<br>写完了带入 case <code>*(</code> 才发现顺序问题，两个栈导致不知道前后顺序，无法验证顺序。</li>
+<li>方案 B：为了解决顺序问题，决定还是放入同一个列表，这样记录了顺序。但实现了一半发现虽然有顺序了，但是因为列表混合了两种字符，匹配过程需要各种查找位置，逻辑很乱，方案 A 的栈思路清晰很多。于是又想到是否可以在方案 A 基础上改进。</li>
+<li>方案 C：基于方案 A 的两个栈，额外记录了 index，用于最后匹配时比较顺序。</li>
+</ul>
+<p>最后方案 C 一次通过了，因为这次吸取上次教训边界条件考虑全了。但是如上面记录，中间来回换方案浪费了非常多时间，反思是动手之前应该先想清楚</p>
+<h1 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h1><h1 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h1><h1 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/ARTS-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -228,7 +312,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
               </span>
 
           
@@ -365,7 +449,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
               </span>
 
           
@@ -449,7 +533,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
               </span>
 
           
@@ -544,7 +628,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
               </span>
 
           
@@ -623,7 +707,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 13:06:36" itemprop="dateModified" datetime="2020-07-07T13:06:36+08:00">2020-07-07</time>
+                <time title="Modified: 2020-07-20 00:33:16" itemprop="dateModified" datetime="2020-07-20T00:33:16+08:00">2020-07-20</time>
               </span>
 
           
