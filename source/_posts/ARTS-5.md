@@ -17,7 +17,7 @@ tags:
 
 递归方法：`fun permute(fixedNums: List<Int>, nums: List<Int>): List<List<Int>>`
 
-最终写出来可读性还是挺好的，不过中间会生成很多 List 对象，感觉性能不会很好。最后速度 81，内存 57，符合预期。之后再想办法优化。
+最终写出来可读性还是挺好的，但中间会生成很多的 List 对象，感觉性能不会很好。最后速度 81，内存 57，符合预期。之后再想办法优化。
 
 # Tip
 
@@ -67,6 +67,22 @@ Kotlin 的属性（property），虽然长得与 Java 的字段（Field）很像
 所以属性的可见性，只是 getter 和 setter 的可见性，并非属性背后字段的可见性。
 
 搞清楚问题原因，解决就很简单了，注解在字段上，字段是 private，子类获取不到，但父类自己可以获取到，这对于 APT 或反射都不成问题。
+
+APT 解决方案：通过子类 Element 获取父类 Element，从而获取到父类私有的 field
+
+``` Kotlin
+while (element != null) {
+  for (memberElement in element.enclosedElements) {
+    // 父类 Element 能获取到自己的私有 field
+    memberElement.getAnnotation(Module::class.java)
+  }
+  
+  // 迭代找父类
+  element = (element.superclass as? DeclaredType)?.asElement() as? TypeElement
+}
+```
+
+
 
 # Review
 
